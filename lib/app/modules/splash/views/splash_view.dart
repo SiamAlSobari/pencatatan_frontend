@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:mobile/app/core/colors/app_color.dart';
 import 'package:mobile/app/modules/splash/widgets/splash_bottom_badge.dart';
 import 'package:mobile/app/modules/splash/widgets/splash_center.dart';
 
