@@ -43,7 +43,7 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(7),
                 borderSide: BorderSide(
                   style: BorderStyle.solid,
                   color: Colors.grey.shade400,
@@ -93,7 +93,7 @@ class LoginForm extends StatelessWidget {
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(7),
                   borderSide: BorderSide(
                     style: BorderStyle.solid,
                     color: Colors.grey.shade400,
@@ -109,7 +109,7 @@ class LoginForm extends StatelessWidget {
               backgroundColor: AppColor.primary,
               minimumSize: Size(double.infinity, 50),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(7),
               ),
             ),
             onPressed: () => controller.login(),

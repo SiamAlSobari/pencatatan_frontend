@@ -45,17 +45,13 @@ class LoginController extends GetxController {
         'Login Successful',
         'Welcome back!',
         snackPosition: SnackPosition.TOP,
-        
       );
-      
-
     } catch (e) {
       Get.snackbar(
         'Login Failed',
         'Please check your credentials and try again.',
         snackPosition: SnackPosition.TOP,
       );
-      
     } finally {
       isLoading.value = false;
     }
