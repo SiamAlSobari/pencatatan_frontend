@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mobile/app/core/storages/token_storage.dart';
+import 'package:mobile/app/routes/app_pages.dart';
 
 class BaseProvider extends GetConnect {
   @override
@@ -18,9 +19,9 @@ class BaseProvider extends GetConnect {
     );
 
     httpClient.addResponseModifier(
-      (request, response)  {
+      (request, response) {
         if (response.statusCode == 401) {
-          Get.offAllNamed('/login');
+          Get.offAllNamed(Routes.LOGIN);
         }
       },
     );

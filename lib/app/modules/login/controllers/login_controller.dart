@@ -12,6 +12,7 @@ class LoginController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
   var isLoading = false.obs;
+  var isPasswordVisible = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -29,17 +30,32 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
+  void togglePasswordVisibility() {
+    isPasswordVisible.value = !isPasswordVisible.value;
+  }
+
   Future<void> login() async {
     try {
       isLoading.value = true;
       final response = await repository.login(email.text, password.text);
-      final token = response.body['data']['token'];
+      final token = response.body['data']['token'].toString();
       await TokenStorage().saveToken(token);
-      Get.offAllNamed('/home');
+
+      Get.snackbar(
+        'Login Successful',
+        'Welcome back!',
+        snackPosition: SnackPosition.TOP,
+        
+      );
+      
+
     } catch (e) {
       Get.snackbar(
-          'Login Failed', 'Please check your credentials and try again.',
-          snackPosition: SnackPosition.BOTTOM);
+        'Login Failed',
+        'Please check your credentials and try again.',
+        snackPosition: SnackPosition.TOP,
+      );
+      
     } finally {
       isLoading.value = false;
     }
