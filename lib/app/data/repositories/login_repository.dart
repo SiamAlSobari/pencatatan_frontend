@@ -5,7 +5,7 @@ class LoginRepository {
 
   LoginRepository(this.provider);
 
-  Future login(Map data) {
-    return provider.login(data);
+  Future login(String email, String password) {
+    return provider.login(email, password);
   }
 }

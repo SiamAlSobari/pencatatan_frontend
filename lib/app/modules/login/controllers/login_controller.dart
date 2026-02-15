@@ -1,19 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile/app/data/providers/login_provider.dart';
+import 'package:mobile/app/core/storages/token_storage.dart';
 import 'package:mobile/app/data/repositories/login_repository.dart';
 
 class LoginController extends GetxController {
-  late LoginRepository repository;
-  final count = 0.obs;
+  final LoginRepository repository;
+
+  LoginController(this.repository);
+
+  final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();
   var isLoading = false.obs;
-
   @override
   void onInit() {
-     repository = LoginRepository(LoginProvider());
     super.onInit();
   }
 
@@ -29,21 +29,17 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
-
   Future<void> login() async {
     try {
       isLoading.value = true;
-      final response = await repository.login({'email': email.text, 'password': password.text});
-      if (response.statusCode == 200) {
-        debugPrint("Login successful: ${response.body['data']['token']}");
-        Get.snackbar("Success", "Login successful!");
-        Get.offAllNamed('/main');
-      } else {
-        Get.snackbar("Error", "Login failed: ${response.statusText}");
-      }
+      final response = await repository.login(email.text, password.text);
+      final token = response.body['data']['token'];
+      await TokenStorage().saveToken(token);
+      Get.offAllNamed('/home');
     } catch (e) {
-      Get.snackbar("Error", "Login failed: $e");
+      Get.snackbar(
+          'Login Failed', 'Please check your credentials and try again.',
+          snackPosition: SnackPosition.BOTTOM);
     } finally {
       isLoading.value = false;
     }

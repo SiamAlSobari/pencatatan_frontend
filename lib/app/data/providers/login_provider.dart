@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
+import 'package:mobile/app/data/providers/base_provider.dart';
 
-class LoginProvider extends GetConnect {
-  @override
-  void onInit() {
-    httpClient.baseUrl = 'https://api.example.com';
-  }
-
-  Future<Response> login(Map data) {
-    return post('/login', data);
+class LoginProvider extends BaseProvider {
+  Future<Response> login(
+    String email,
+    String password,
+  ) {
+    return post('/auth/login', {
+      'email': email,
+      'password': password,
+    });
   }
 }

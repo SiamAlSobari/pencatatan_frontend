@@ -1,23 +1,31 @@
 import 'package:get/get.dart';
+import 'package:mobile/app/data/repositories/splash_repository.dart';
 
 class SplashController extends GetxController {
-  //TODO: Implement SplashController
+  final SplashRepository repository;
 
-  final count = 0.obs;
+  SplashController(this.repository);
   @override
   void onInit() {
+    checkSession();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  // }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   super.onClose();
+  // }
 
-  void increment() => count.value++;
+  Future<void> checkSession() async {
+    await Future.delayed(Duration(seconds: 2));
+    final res = await repository.checkAuth();
+    if (res != null) {
+      Get.offAllNamed('/home');
+    }
+  }
 }
