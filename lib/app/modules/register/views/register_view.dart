@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobile/app/modules/register/widgets/register_form.dart';
+import 'package:mobile/app/modules/register/widgets/register_sub_title.dart';
+import 'package:mobile/app/modules/register/widgets/register_title.dart';
 
 import '../controllers/register_controller.dart';
 
@@ -9,15 +12,20 @@ class RegisterView extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('RegisterView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'RegisterView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        child: Center(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const RegisterTitle(),
+            const RegisterSubTitle(),
+            const SizedBox(height: 40),
+            const RegisterForm(),
+            const SizedBox(height: 20),
+          ],
+        )),
       ),
     );
   }

@@ -13,14 +13,14 @@ class LoginTitle extends StatelessWidget {
           'Selamat Datang',
           style: GoogleFonts.manrope(
               fontSize: 24,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w900,
               color: const Color(0xFF111318)),
         ),
         Text(
           'Kembali',
           style: GoogleFonts.manrope(
               fontSize: 24,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w900,
               color: const Color(0xFF111318)),
         )
       ],
