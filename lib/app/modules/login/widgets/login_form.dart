@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/app/core/colors/app_color.dart';
+import 'package:mobile/app/core/utils/app_input_border.dart';
 import 'package:mobile/app/modules/login/controllers/login_controller.dart';
 
 class LoginForm extends StatelessWidget {
@@ -34,23 +35,20 @@ class LoginForm extends StatelessWidget {
               ),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(
-                  style: BorderStyle.solid,
-                  color: Colors.grey.shade400,
-                  width: 1,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(
-                  style: BorderStyle.solid,
-                  color: Colors.grey.shade400,
-                  width: 1,
-                ),
-              ),
+              focusedBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+              enabledBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+              focusedErrorBorder: AppInputBorder.custom(Colors.red.shade400, 1),
+              errorBorder: AppInputBorder.custom(Colors.red.shade400, 1),
             ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Email tidak boleh kosong';
+              }
+              if (!GetUtils.isEmail(value)) {
+                return 'Format email tidak valid';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 20),
           Text(
@@ -84,23 +82,21 @@ class LoginForm extends StatelessWidget {
                 ),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(7),
-                  borderSide: BorderSide(
-                    style: BorderStyle.solid,
-                    color: Colors.grey.shade400,
-                    width: 1,
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(7),
-                  borderSide: BorderSide(
-                    style: BorderStyle.solid,
-                    color: Colors.grey.shade400,
-                    width: 1,
-                  ),
-                ),
+                focusedBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+                enabledBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+                focusedErrorBorder:
+                    AppInputBorder.custom(Colors.red.shade400, 1),
+                errorBorder: AppInputBorder.custom(Colors.red.shade400, 1),
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Password tidak boleh kosong';
+                }
+                if (value.length < 6) {
+                  return 'Password minimal 6 karakter';
+                }
+                return null;
+              },
             ),
           ),
           const SizedBox(height: 30),

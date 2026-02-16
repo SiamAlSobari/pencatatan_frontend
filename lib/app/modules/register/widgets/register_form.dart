@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/app/core/colors/app_color.dart';
+import 'package:mobile/app/core/utils/app_input_border.dart';
 
 class RegisterForm extends StatelessWidget {
   const RegisterForm({super.key});
@@ -29,22 +29,12 @@ class RegisterForm extends StatelessWidget {
               hintText: "Masukkan nama lengkap",
               prefixIcon: Icon(
                 Icons.person_outline,
-                color: AppColor.text.withAlpha(150),
+                color: AppColor.text,
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(
-                  color: Colors.grey.shade400,
-                  width: 1.0,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(
-                  color: Colors.grey.shade400,
-                  width: 1.0,
-                ),
-              ),
+              focusedBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+              enabledBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+              focusedErrorBorder: AppInputBorder.custom(Colors.red.shade400, 1),
+              errorBorder: AppInputBorder.custom(Colors.red.shade400, 1),
             ),
           ),
           const SizedBox(height: 16),
@@ -64,22 +54,12 @@ class RegisterForm extends StatelessWidget {
               hintText: "Masukkan email",
               prefixIcon: Icon(
                 Icons.email_outlined,
-                color: AppColor.text.withAlpha(150),
+                color: AppColor.text,
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(
-                  color: Colors.grey.shade400,
-                  width: 1.0,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(
-                  color: Colors.grey.shade400,
-                  width: 1.0,
-                ),
-              ),
+              focusedBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+              enabledBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+              focusedErrorBorder: AppInputBorder.custom(Colors.red.shade400, 1),
+              errorBorder: AppInputBorder.custom(Colors.red.shade400, 1),
             ),
           ),
           const SizedBox(height: 16),
@@ -100,20 +80,10 @@ class RegisterForm extends StatelessWidget {
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               hintText: "Masukkan password",
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(
-                  color: Colors.grey.shade400,
-                  width: 1.0,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(
-                  color: Colors.grey.shade400,
-                  width: 1.0,
-                ),
-              ),
+              focusedBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+              enabledBorder: AppInputBorder.custom(Colors.grey.shade400, 1),
+              focusedErrorBorder: AppInputBorder.custom(Colors.red.shade400, 1),
+              errorBorder: AppInputBorder.custom(Colors.red.shade400, 1),
             ),
           ),
         ],

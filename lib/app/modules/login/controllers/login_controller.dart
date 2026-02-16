@@ -35,6 +35,9 @@ class LoginController extends GetxController {
   }
 
   Future<void> login() async {
+    if (!formKey.currentState!.validate()) {
+      return;
+    }
     try {
       isLoading.value = true;
       final response = await repository.login(email.text, password.text);
