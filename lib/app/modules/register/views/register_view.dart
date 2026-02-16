@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobile/app/modules/register/widgets/register_bottom_logo.dart';
 import 'package:mobile/app/modules/register/widgets/register_form.dart';
+import 'package:mobile/app/modules/register/widgets/register_login_redirect.dart';
 import 'package:mobile/app/modules/register/widgets/register_sub_title.dart';
 import 'package:mobile/app/modules/register/widgets/register_title.dart';
 
@@ -12,6 +14,7 @@ class RegisterView extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Center(
@@ -24,6 +27,9 @@ class RegisterView extends GetView<RegisterController> {
             const SizedBox(height: 40),
             const RegisterForm(),
             const SizedBox(height: 20),
+            const RegisterLoginRedirect(),
+            const SizedBox(height: 30),
+            const RegisterBottomLogo()
           ],
         )),
       ),
