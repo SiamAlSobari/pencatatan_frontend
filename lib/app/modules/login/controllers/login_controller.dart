@@ -45,14 +45,14 @@ class LoginController extends GetxController {
       await TokenStorage().saveToken(token);
 
       Get.snackbar(
-        'Login Successful',
-        'Welcome back!',
+        'Login Berhasil',
+        'Selamat datang kembali!',
         snackPosition: SnackPosition.TOP,
       );
     } catch (e) {
       Get.snackbar(
-        'Login Failed',
-        'Please check your credentials and try again.',
+        'Login Gagal',
+        'Silakan periksa kredensial Anda dan coba lagi.',
         snackPosition: SnackPosition.TOP,
       );
     } finally {

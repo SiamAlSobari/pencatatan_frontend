@@ -6,12 +6,12 @@ class RegisterController extends GetxController {
   final RegisterRepository repository;
   RegisterController(this.repository);
 
-
   final formKey = GlobalKey<FormState>();
   var isPasswordVisible = false.obs;
   final name = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
+  var isLoading = false.obs;
 
   void togglePasswordVisibility() {
     isPasswordVisible.value = !isPasswordVisible.value;
@@ -33,5 +33,28 @@ class RegisterController extends GetxController {
     email.dispose();
     password.dispose();
     super.onClose();
+  }
+
+  Future<void> register() async {
+    if (!formKey.currentState!.validate()) {
+      return;
+    }
+    try {
+      isLoading.value = true;
+      await repository.register(name.text, email.text, password.text);
+      Get.snackbar(
+        'Register Berhasil',
+        'Anda berhasil mendaftar, silakan login.',
+        snackPosition: SnackPosition.TOP,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Register Gagal',
+        e.toString(),
+        snackPosition: SnackPosition.TOP,
+      );
+    } finally {
+      isLoading.value = false;
+    }
   }
 }
