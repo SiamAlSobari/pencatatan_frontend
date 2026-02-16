@@ -105,7 +105,9 @@ class RegisterForm extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              controller.register();
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColor.primary,
               minimumSize: const Size(double.infinity, 50),
@@ -113,22 +115,28 @@ class RegisterForm extends StatelessWidget {
                 borderRadius: BorderRadius.circular(7),
               ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Daftar Sekarang",
-                  style: GoogleFonts.manrope(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
-                )
-              ],
+            child: Obx(
+              () => controller.isLoading.value
+                  ? const CircularProgressIndicator(
+                      color: Colors.white,
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Daftar Sekarang",
+                          style: GoogleFonts.manrope(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        )
+                      ],
+                    ),
             ),
           )
         ],
