@@ -9,6 +9,9 @@ class RegisterRepository {
     if (response.statusCode == 409) {
       throw Exception('Email Sudah Terdaftar');
     }
+    if (response.statusCode == 500) {
+      throw Exception('Server Error');
+    }
     return response;
   }
 }

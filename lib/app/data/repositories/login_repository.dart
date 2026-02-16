@@ -12,6 +12,10 @@ class LoginRepository {
     } else if (response.statusCode == 400) {
       throw Exception('Password Salah');
     }
+    if (response.statusCode == 500) {
+      throw Exception('Server Error');
+    }
+    
     return response;
   }
 }

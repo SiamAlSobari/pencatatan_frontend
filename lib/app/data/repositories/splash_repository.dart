@@ -1,14 +1,21 @@
 import 'package:get/get.dart';
+import 'package:mobile/app/core/services/session_service.dart';
+import 'package:mobile/app/data/models/session_model.dart';
 import 'package:mobile/app/data/providers/splash_provider.dart';
 
 class SplashRepository {
   final SplashProvider _provider;
+  final SessionService session = Get.find<SessionService>();
 
   SplashRepository(this._provider);
 
   Future<Response?> checkAuth() async {
     try {
       final response = await _provider.checkAuth();
+      final body = response.body['data'];
+      final userSession =
+          SessionModel(name: body['name'], email: body['email']);
+      session.setUser(userSession);
       return response;
     } catch (e) {
       return null;
