@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mobile/app/core/services/session_service.dart';
 import 'package:mobile/app/data/models/session_model.dart';
@@ -11,11 +12,14 @@ class SplashRepository {
 
   Future<Response?> checkAuth() async {
     try {
+      debugPrint('Checking authentication status...');
       final response = await _provider.checkAuth();
       final body = response.body['data'];
+      debugPrint('Session data: $body');
       final userSession =
           SessionModel(name: body['name'], email: body['email']);
       session.setUser(userSession);
+
       return response;
     } catch (e) {
       return null;

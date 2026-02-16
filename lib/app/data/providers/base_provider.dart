@@ -22,10 +22,11 @@ class BaseProvider extends GetConnect {
       (request, response) {
         if (response.statusCode == 401) {
           Get.offAllNamed(Routes.LOGIN);
-        } 
+        }
         // else {
         //   Get.offAllNamed(Routes.LOGIN);
         // }
+        return response;
       },
     );
 

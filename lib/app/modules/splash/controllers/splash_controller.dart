@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mobile/app/data/repositories/splash_repository.dart';
+import 'package:mobile/app/routes/app_pages.dart';
 
 class SplashController extends GetxController {
   final SplashRepository repository;
@@ -24,5 +25,6 @@ class SplashController extends GetxController {
   Future<void> checkSession() async {
     await Future.delayed(Duration(seconds: 2));
     await repository.checkAuth();
+    Get.offAllNamed(Routes.MAIN);
   }
 }
