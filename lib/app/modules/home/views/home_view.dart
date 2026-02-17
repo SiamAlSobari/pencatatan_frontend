@@ -13,7 +13,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const HomeBalanceCard(),
+        HomeBalanceCard(),
         const HomeTransactionsAction(),
         const HomeWallletCarousel(),
         SliverList(

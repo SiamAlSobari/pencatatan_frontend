@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:mobile/app/data/repositories/splash_repository.dart';
-import 'package:mobile/app/routes/app_pages.dart';
 
 class SplashController extends GetxController {
   final SplashRepository repository;

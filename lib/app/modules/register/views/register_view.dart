@@ -25,7 +25,7 @@ class RegisterView extends GetView<RegisterController> {
             const RegisterTitle(),
             const RegisterSubTitle(),
             const SizedBox(height: 40),
-            const RegisterForm(),
+            RegisterForm(),
             const SizedBox(height: 20),
             const RegisterLoginRedirect(),
             const SizedBox(height: 30),

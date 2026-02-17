@@ -26,7 +26,7 @@ class LoginView extends GetView<LoginController> {
                 const LoginTitle(),
                 const LoginSubTitle(),
                 const SizedBox(height: 40),
-                const LoginForm(),
+                 LoginForm(),
                 const SizedBox(height: 20),
                 const LoginRegisterRedirect()
               ],

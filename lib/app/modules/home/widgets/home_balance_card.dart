@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/app/core/colors/app_color.dart';
+import 'package:mobile/app/core/utils/currency_format.dart';
+import 'package:mobile/app/modules/home/controllers/home_controller.dart';
 
 class HomeBalanceCard extends StatelessWidget {
-  const HomeBalanceCard({super.key});
+  HomeBalanceCard({super.key});
+
+  final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,34 +35,90 @@ class HomeBalanceCard extends StatelessWidget {
                 children: [
                   Text(
                     'Total Saldo Seluruh Dompet',
-                    style: TextStyle(
+                    style: GoogleFonts.manrope(
                       color: Colors.white.withAlpha(200),
                       fontSize: 14,
                     ),
                   ),
                   const SizedBox(height: 4),
-                  const Text(
-                    'Rp 12.345.678',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
+                  Obx(
+                    () => Text(
+                      formatCurrency(
+                          controller.walletSummary.value?.totalBalance ?? 0),
+                      style: GoogleFonts.manrope(
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                   ),
                   Expanded(child: Divider(color: Colors.white.withAlpha(100))),
                   Row(
                     children: [
-                      const Icon(
-                        Icons.arrow_upward,
-                        color: Colors.greenAccent,
-                        size: 16,
+                      Obx(
+                        () {
+                          if (controller.walletSummary.value?.trend == 'Up') {
+                            return Row(
+                              children: [
+                                Icon(
+                                  Icons.trending_up,
+                                  color: Colors.greenAccent,
+                                  size: 16,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  '${controller.walletSummary.value?.presentase}%',
+                                  style: GoogleFonts.manrope(
+                                    color: Colors.greenAccent,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            );
+                          } else if (controller.walletSummary.value?.trend ==
+                              'Down') {
+                            return Row(
+                              children: [
+                                Icon(
+                                  Icons.trending_down,
+                                  color: Colors.redAccent,
+                                  size: 16,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  '${controller.walletSummary.value?.presentase}%',
+                                  style: GoogleFonts.manrope(
+                                    color: Colors.redAccent,
+                                    fontSize: 14,
+                                  ),
+                                )
+                              ],
+                            );
+                          }
+                          return Text(
+                            'Stabil',
+                            style: TextStyle(
+                              color: Colors.white.withAlpha(200),
+                              fontSize: 14,
+                            ),
+                          );
+                        },
                       ),
-                      const SizedBox(width: 4),
-                      Text(
-                        'Rp 1.234.567 (10%)',
-                        style: TextStyle(
-                          color: Colors.white.withAlpha(200),
-                          fontSize: 14,
+                      const SizedBox(width: 8),
+                      Obx(
+                        () => Text(
+                          formatCurrency(
+                              controller.walletSummary.value?.totalBalance ??
+                                  0),
+                          style: GoogleFonts.manrope(
+                            color: Colors.white.withAlpha(200),
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
                       ),
                       Spacer(),

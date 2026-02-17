@@ -6,11 +6,11 @@ import 'package:mobile/app/core/utils/app_input_border.dart';
 import 'package:mobile/app/modules/register/controllers/register_controller.dart';
 
 class RegisterForm extends StatelessWidget {
-  const RegisterForm({super.key});
+   RegisterForm({super.key});
 
+    final controller = Get.find<RegisterController>();
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<RegisterController>();
     return Form(
       key: controller.formKey,
       child: Column(

@@ -6,11 +6,11 @@ import 'package:mobile/app/core/utils/app_input_border.dart';
 import 'package:mobile/app/modules/login/controllers/login_controller.dart';
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+  LoginForm({super.key});
 
+  final controller = Get.find<LoginController>();
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<LoginController>();
     return Form(
       key: controller.formKey,
       child: Column(

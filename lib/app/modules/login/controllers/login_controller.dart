@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile/app/core/services/session_service.dart';
 import 'package:mobile/app/core/storages/token_storage.dart';
+import 'package:mobile/app/data/models/session_model.dart';
 import 'package:mobile/app/data/repositories/login_repository.dart';
 import 'package:mobile/app/routes/app_pages.dart';
 
@@ -9,6 +11,7 @@ class LoginController extends GetxController {
 
   LoginController(this.repository);
 
+  final session = Get.find<SessionService>();
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();
@@ -44,6 +47,11 @@ class LoginController extends GetxController {
       final response = await repository.login(email.text, password.text);
       final token = response.body['data']['token'].toString();
       await TokenStorage().saveToken(token);
+      final userSession = SessionModel(
+        name: response.body['data']['user']['name'],
+        email: response.body['data']['user']['email'],
+      );
+      session.setUser(userSession);
       Get.snackbar(
         'Login Berhasil',
         'Selamat datang kembali!',
