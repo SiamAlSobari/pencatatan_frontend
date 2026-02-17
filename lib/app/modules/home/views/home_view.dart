@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:mobile/app/modules/home/widgets/home_balance_card.dart';
-import 'package:mobile/app/modules/home/widgets/home_transaction_history.dart';
+import 'package:mobile/app/modules/home/widgets/home_history_title_row.dart';
+import 'package:mobile/app/modules/home/widgets/home_transaction_history_list.dart';
 import 'package:mobile/app/modules/home/widgets/home_transactions_action.dart';
 import 'package:mobile/app/modules/home/widgets/home_walllet_carousel.dart';
 
@@ -17,7 +18,8 @@ class HomeView extends GetView<HomeController> {
         HomeBalanceCard(),
         const HomeTransactionsAction(),
         HomeWallletCarousel(),
-        HomeTransactionHistory(),
+        const HomeHistoryTitleRow(),
+        HomeTransactionHistoryList()
       ],
     );
   }

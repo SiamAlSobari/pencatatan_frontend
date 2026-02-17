@@ -104,7 +104,9 @@ class HomeWallletCarousel extends StatelessWidget {
                 Text(
                   'Dompet Saya',
                   style: GoogleFonts.manrope(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 InkWell(
                   onTap: () {},
