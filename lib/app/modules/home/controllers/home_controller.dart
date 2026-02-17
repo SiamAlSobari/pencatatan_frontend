@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mobile/app/data/models/wallet_model.dart';
 import 'package:mobile/app/data/models/wallet_summary_model.dart';
 import 'package:mobile/app/data/repositories/home_repository.dart';
 
@@ -6,10 +8,11 @@ class HomeController extends GetxController {
   final HomeRepository repository;
   HomeController(this.repository);
   final walletSummary = Rxn<WalletSummaryModel>();
-
+  final wallets = RxList<WalletModel>();
   @override
   void onInit() {
     fetchWalletSummary();
+    fetchWallets();
     super.onInit();
   }
 
@@ -32,6 +35,21 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       walletSummary.value = null;
+    }
+  }
+
+  void fetchWallets() async {
+    try {
+      final response = await repository.fetchWallets();
+      if (response.statusCode == 200) {
+        final data = response.body['data'] as List;
+        wallets.value =
+            data.take(5).map((json) => WalletModel.fromJson(json)).toList();
+        debugPrint('Fetched ${wallets.length} wallets');
+        debugPrint('Wallets: ${wallets.map((w) => w.name).join(', ')}');
+      }
+    } catch (e) {
+      wallets.clear();
     }
   }
 }

@@ -9,4 +9,7 @@ class HomeRepository {
   Future<Response> fetchWalletSummary() async {
     return await provider.fetchWalletSummary();
   }
+  Future<Response> fetchWallets() async {
+    return await provider.fetchWallets();
+  }
 }

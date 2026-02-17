@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:mobile/app/modules/home/widgets/home_balance_card.dart';
+import 'package:mobile/app/modules/home/widgets/home_transaction_history.dart';
 import 'package:mobile/app/modules/home/widgets/home_transactions_action.dart';
 import 'package:mobile/app/modules/home/widgets/home_walllet_carousel.dart';
 
@@ -15,13 +16,8 @@ class HomeView extends GetView<HomeController> {
       slivers: [
         HomeBalanceCard(),
         const HomeTransactionsAction(),
-        const HomeWallletCarousel(),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => ListTile(title: Text('Item #$index')),
-            childCount: 20,
-          ),
-        ),
+        HomeWallletCarousel(),
+        HomeTransactionHistory(),
       ],
     );
   }
