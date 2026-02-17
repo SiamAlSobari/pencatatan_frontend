@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeTransactionsAction extends StatelessWidget {
@@ -64,7 +63,7 @@ class HomeTransactionsAction extends StatelessWidget {
                         width: 30,
                         height: 30,
                         decoration: BoxDecoration(
-                          color: Colors.greenAccent.withAlpha(150),
+                          color: Colors.redAccent.withAlpha(150),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
@@ -76,7 +75,7 @@ class HomeTransactionsAction extends StatelessWidget {
                       const SizedBox(width: 12),
                       Expanded(
                           child: Text(
-                        "Pemasukan",
+                        "Pengeluaran",
                         style: GoogleFonts.manrope(
                           fontSize: 14,
                           color: Colors.black87,
