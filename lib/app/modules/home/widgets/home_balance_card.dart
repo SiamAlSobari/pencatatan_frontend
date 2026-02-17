@@ -56,6 +56,7 @@ class HomeBalanceCard extends StatelessWidget {
                   ),
                   Expanded(child: Divider(color: Colors.white.withAlpha(100))),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Obx(
                         () {
@@ -73,6 +74,7 @@ class HomeBalanceCard extends StatelessWidget {
                                   style: GoogleFonts.manrope(
                                     color: Colors.greenAccent,
                                     fontSize: 14,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ],
@@ -88,10 +90,11 @@ class HomeBalanceCard extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
-                                  '${controller.walletSummary.value?.presentase}%',
+                                  '${controller.walletSummary.value?.presentase.toStringAsFixed(2)}%',
                                   style: GoogleFonts.manrope(
                                     color: Colors.redAccent,
                                     fontSize: 14,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 )
                               ],
@@ -107,21 +110,23 @@ class HomeBalanceCard extends StatelessWidget {
                         },
                       ),
                       const SizedBox(width: 8),
-                      Obx(
-                        () => Text(
-                          formatCurrency(
-                              controller.walletSummary.value?.totalBalance ??
-                                  0),
-                          style: GoogleFonts.manrope(
-                            color: Colors.white.withAlpha(200),
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Obx(
+                          () => Text(
+                            formatCurrency(
+                                controller.walletSummary.value?.totalBalance ??
+                                    0),
+                            style: GoogleFonts.manrope(
+                              color: Colors.white.withAlpha(200),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
                         ),
                       ),
-                      Spacer(),
+                      const SizedBox(width: 8), 
                       InkWell(
                         onTap: () {},
                         child: Container(
