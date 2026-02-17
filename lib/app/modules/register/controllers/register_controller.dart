@@ -50,7 +50,7 @@ class RegisterController extends GetxController {
     } catch (e) {
       Get.snackbar(
         'Register Gagal',
-        e.toString(),
+        e.toString().replaceAll('Exception: ', ''),
         snackPosition: SnackPosition.TOP,
       );
     } finally {

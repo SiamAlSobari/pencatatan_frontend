@@ -4,13 +4,13 @@ class RegisterRepository {
   final RegisterProvider provider;
 
   RegisterRepository(this.provider);
-  Future register(String name, String email, String password)async {
-    final response =await  provider.register(name, email, password);
+  Future register(String name, String email, String password) async {
+    final response = await provider.register(name, email, password);
     if (response.statusCode == 409) {
-      throw Exception('Email Sudah Terdaftar');
+      throw 'Email Sudah Terdaftar';
     }
     if (response.statusCode == 500) {
-      throw Exception('Server Error');
+      throw 'Server Error';
     }
     return response;
   }

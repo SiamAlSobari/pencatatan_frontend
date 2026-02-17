@@ -25,6 +25,5 @@ class SplashController extends GetxController {
   Future<void> checkSession() async {
     await Future.delayed(Duration(seconds: 2));
     await repository.checkAuth();
-    Get.offAllNamed(Routes.MAIN);
   }
 }

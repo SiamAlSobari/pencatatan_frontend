@@ -24,41 +24,42 @@ class HomeWallletCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Dompet Saya',
-                    style: GoogleFonts.manrope(
-                        fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      'Lihat Semua',
-                      style: GoogleFonts.manrope(
-                          fontSize: 12,
-                          color: AppColor.primary,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                height: 120,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: (context, index) => _buildWalletCard(index + 1),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Dompet Saya',
+                  style: GoogleFonts.manrope(
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-              )
-            ],
-          )),
+                InkWell(
+                  onTap: () {},
+                  child: Text(
+                    'Lihat Semua',
+                    style: GoogleFonts.manrope(
+                        fontSize: 12,
+                        color: AppColor.primary,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 120,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) => _buildWalletCard(index + 1),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile/app/core/storages/token_storage.dart';
 import 'package:mobile/app/data/repositories/login_repository.dart';
+import 'package:mobile/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
   final LoginRepository repository;
@@ -43,16 +44,16 @@ class LoginController extends GetxController {
       final response = await repository.login(email.text, password.text);
       final token = response.body['data']['token'].toString();
       await TokenStorage().saveToken(token);
-
       Get.snackbar(
         'Login Berhasil',
         'Selamat datang kembali!',
         snackPosition: SnackPosition.TOP,
       );
+      Get.offAllNamed(Routes.MAIN);
     } catch (e) {
       Get.snackbar(
         'Login Gagal',
-        'Silakan periksa kredensial Anda dan coba lagi.',
+        e.toString(),
         snackPosition: SnackPosition.TOP,
       );
     } finally {

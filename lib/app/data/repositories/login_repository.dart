@@ -8,14 +8,17 @@ class LoginRepository {
   Future login(String email, String password) async {
     final response = await provider.login(email, password);
     if (response.statusCode == 404) {
-      throw Exception('Email Tidak Ditemukan');
-    } else if (response.statusCode == 400) {
-      throw Exception('Password Salah');
+      throw 'Email tidak ditemukan';
     }
+
+    if (response.statusCode == 400) {
+      throw 'Password salah';
+    }
+
     if (response.statusCode == 500) {
-      throw Exception('Server Error');
+      throw 'Server error';
     }
-    
+
     return response;
   }
 }
