@@ -12,6 +12,7 @@ class ExpenseView extends GetView<ExpenseController> {
     return Scaffold(
       backgroundColor: const Color(0xFFF6F6F8),
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(
           "Tambah Pengeluaran",
           style: GoogleFonts.manrope(

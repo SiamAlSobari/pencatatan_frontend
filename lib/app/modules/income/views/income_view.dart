@@ -10,8 +10,9 @@ class IncomeView extends GetView<IncomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF6F6F8),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF6F6F8),
+        backgroundColor: Colors.white,
         title: Text(
           "Tambah Pemasukan",
           style: GoogleFonts.manrope(

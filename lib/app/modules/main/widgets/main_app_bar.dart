@@ -15,6 +15,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     final session = Get.find<SessionService>();
     return AppBar(
       shadowColor: Colors.black.withAlpha(150),
+      backgroundColor: Colors.white,
       elevation: 0.4,
       title: Row(
         children: [
