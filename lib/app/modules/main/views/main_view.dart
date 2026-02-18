@@ -12,7 +12,7 @@ class MainView extends GetView<MainController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        backgroundColor: Color(0xFFF6F6F8),
+        backgroundColor: const Color(0xFFF6F6F8),
         appBar: MainAppBar(),
         body: controller.pages[controller.indexPage.value],
         bottomNavigationBar: const MainBottomNav(),

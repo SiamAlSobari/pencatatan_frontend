@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile/app/routes/app_pages.dart';
 
 class HomeTransactionsAction extends StatelessWidget {
   const HomeTransactionsAction({super.key});
@@ -13,6 +15,7 @@ class HomeTransactionsAction extends StatelessWidget {
           children: [
             Expanded(
                 child: InkWell(
+              onTap: () => Get.toNamed(Routes.INCOME),
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -44,14 +47,15 @@ class HomeTransactionsAction extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                        child: Text(
-                      "Pemasukan",
-                      style: GoogleFonts.manrope(
-                        fontSize: 14,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.bold,
+                      child: Text(
+                        "Pemasukan",
+                        style: GoogleFonts.manrope(
+                          fontSize: 14,
+                          color: Colors.black87,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ))
+                    )
                   ],
                 ),
               ),
@@ -59,6 +63,7 @@ class HomeTransactionsAction extends StatelessWidget {
             const SizedBox(width: 16),
             Expanded(
                 child: InkWell(
+              onTap: () => Get.toNamed(Routes.EXPENSE),
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
