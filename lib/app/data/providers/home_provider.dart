@@ -9,4 +9,8 @@ class HomeProvider extends BaseProvider {
   Future<Response> fetchWallets() async {
     return await get('/wallets');
   }
+
+  Future<Response> fetchTransactions() async {
+    return await get('/transactions/recent');
+  }
 }

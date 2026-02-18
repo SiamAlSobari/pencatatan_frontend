@@ -12,6 +12,12 @@ Color mapCategoryColor(String category) {
       return const Color(0xFF81C784); // Green
     case 'health':
       return const Color(0xFFBA68C8); // Purple
+    case 'bonus':
+      return const Color(0xFF4DB6AC); // Teal
+    case 'salary':
+      return const Color(0xFF7986CB); // Indigo
+    case 'shopping':
+      return const Color(0xFFFFD54F); // Yellow
     default:
       return const Color(0xFF90A4AE); // Grey for unknown categories
   }
