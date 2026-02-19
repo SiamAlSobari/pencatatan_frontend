@@ -1,9 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile/app/data/repositories/income_repository.dart';
 
 class IncomeController extends GetxController {
-  //TODO: Implement IncomeController
+  final IncomeRepository repository;
 
-  final count = 0.obs;
+  IncomeController(this.repository);
+  final TextEditingController amountInput = TextEditingController(
+    text: 'Rp 0',
+  );
+  final RxnString selectedWalletId = RxnString();
+  final RxnString selectedCategoryId = RxnString();
+
   @override
   void onInit() {
     super.onInit();
@@ -16,8 +24,18 @@ class IncomeController extends GetxController {
 
   @override
   void onClose() {
+    amountInput.dispose();
     super.onClose();
   }
 
-  void increment() => count.value++;
+  int get amountValue {
+    final text = amountInput.text.replaceAll(RegExp(r'[^0-9]'), '');
+    if (text.isEmpty) return 0;
+    return int.parse(text);
+  }
+
+  void submitIncome() {
+    final amount = amountValue;
+    debugPrint('Submitted income: $amount');
+  }
 }
