@@ -100,12 +100,23 @@ class HomeBalanceCard extends StatelessWidget {
                               ],
                             );
                           }
-                          return Text(
-                            'Stabil',
-                            style: TextStyle(
-                              color: Colors.white.withAlpha(200),
-                              fontSize: 14,
-                            ),
+                          return Row(
+                            children: [
+                              Icon(
+                                Icons.trending_flat,
+                                color: Colors.grey,
+                                size: 16,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '0%',
+                                style: GoogleFonts.manrope(
+                                  color: Colors.grey,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
                           );
                         },
                       ),
@@ -126,7 +137,7 @@ class HomeBalanceCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 8), 
+                      const SizedBox(width: 8),
                       InkWell(
                         onTap: () {},
                         child: Container(

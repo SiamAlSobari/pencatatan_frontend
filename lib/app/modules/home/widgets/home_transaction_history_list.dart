@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile/app/core/colors/app_color.dart';
 import 'package:mobile/app/core/utils/color_mapper.dart';
 import 'package:mobile/app/core/utils/currency_format.dart';
 import 'package:mobile/app/core/utils/icon_mapper.dart';
@@ -143,6 +144,31 @@ class HomeTransactionHistoryList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       sliver: Obx(
         () {
+          if (controller.transactionsRecent.isEmpty) {
+            return SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.history,
+                      size: 50,
+                      color: AppColor.text.withAlpha(150),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Belum ada transaksi',
+                      style: GoogleFonts.manrope(
+                        fontSize: 14,
+                        color: AppColor.text.withAlpha(150),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
           return SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: controller.transactionsRecent.length,
