@@ -71,49 +71,76 @@ class IncomeView extends GetView<IncomeController> {
         const SizedBox(
           height: 15,
         ),
-        Obx(() {
-          final selectedId = controller.selectedCategoryId.value;
+        Obx(
+          () {
+            final selectedId = controller.selectedCategoryId.value;
 
-          return GridView.builder(
-            itemCount: 6,
-            shrinkWrap: true, // penting untuk GridView dalam Column
-            physics:
-                const NeverScrollableScrollPhysics(), // agar tidak bisa di-scroll
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, // 3 kolom
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-              childAspectRatio: 2.6, // lebar > tinggi (chip look)
-            ),
-            itemBuilder: (context, index) {
-              final isActive =
-                  selectedId == index.toString();
-              return GestureDetector(
-                onTap: () {
-                  controller.selectedCategoryId.value = index.toString();
-                },
-                child: Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: isActive ? Colors.green : Colors.grey.withAlpha(100),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Kategori ${index + 1}',
-                      style: GoogleFonts.manrope(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+            return GridView.builder(
+              itemCount: 6,
+              shrinkWrap: true, // penting untuk GridView dalam Column
+              physics:
+                  const NeverScrollableScrollPhysics(), // agar tidak bisa di-scroll
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 70 / 90,
+              ),
+              itemBuilder: (context, index) {
+                final isActive = selectedId == index.toString();
+                return GestureDetector(
+                  onTap: () {
+                    controller.selectedCategoryId.value = index.toString();
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 70,
+                        height: 70,
+                        decoration: BoxDecoration(
+                          color: isActive
+                              ? Colors.green
+                              : Colors.grey.withAlpha(100),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: isActive
+                                ? Colors.green
+                                : Colors.grey.withAlpha(100),
+                            width: 1.5,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '${index + 1}',
+                            style: GoogleFonts.manrope(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ),
-                    ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Kategori ${index + 1}',
+                        style: GoogleFonts.manrope(
+                          fontSize: 12,
+                          color: AppColor.text,
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 2, // biar teks tidak keluar
+                        overflow:
+                            TextOverflow.ellipsis, // kalau panjang dipotong
+                      )
+                    ],
                   ),
-                ),
-              );
-            },
-          );
-        })
+                );
+              },
+            );
+          },
+        )
       ],
     );
   }

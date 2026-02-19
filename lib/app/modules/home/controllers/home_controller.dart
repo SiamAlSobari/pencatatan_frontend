@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mobile/app/data/models/transaction_model.dart';
 import 'package:mobile/app/data/models/wallet_model.dart';
@@ -64,9 +63,9 @@ class HomeController extends GetxController {
         final data = response.body['data'] as List;
         transactionsRecent.value =
             data.map((json) => TransactionModel.fromJson(json)).toList();
-        debugPrint('Fetched ${transactionsRecent.length} transactions');
-        debugPrint(
-            'Transactions: ${transactionsRecent.map((t) => t.note).join(', ')}');
+        // debugPrint('Fetched ${transactionsRecent.length} transactions');
+        // debugPrint(
+        //     'Transactions: ${transactionsRecent.map((t) => t.note).join(', ')}');
       }
     } catch (e) {
       transactionsRecent.clear();
