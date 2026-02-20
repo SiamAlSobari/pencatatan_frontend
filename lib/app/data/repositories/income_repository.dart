@@ -13,4 +13,9 @@ class IncomeRepository {
   Future<Response> fetchCategories() async {
     return await provider.fetchCategories();
   }
+
+  Future<Response> submitIncome(String walletId, String categoryId,
+      int amount, String note, DateTime date) async {
+    return await provider.submitIncome(walletId, categoryId, amount, note, date);
+  }
 }

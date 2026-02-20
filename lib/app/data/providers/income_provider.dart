@@ -6,7 +6,24 @@ class IncomeProvider extends BaseProvider {
     return await get('/wallets');
   }
 
-    Future<Response> fetchCategories() async {
+  Future<Response> fetchCategories() async {
     return await get('/categories');
+  }
+
+  Future<Response> submitIncome(String walletId, String categoryId,
+      int amount, String note, DateTime date) async {
+    return await post(
+      '/incomes',
+      {
+        'wallet_id': walletId,
+        'category_id': categoryId,
+        'amount': amount,
+        'note': note,
+        'date': date.toIso8601String(),
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
   }
 }

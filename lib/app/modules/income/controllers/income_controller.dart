@@ -15,6 +15,8 @@ class IncomeController extends GetxController {
   final RxnString selectedCategoryId = RxnString();
   final RxList<CategoryModel> categories = RxList<CategoryModel>();
   final RxList<WalletModel> wallets = RxList<WalletModel>();
+  final Rxn<DateTime> selectedDate = Rxn<DateTime>(DateTime.now());
+  final TextEditingController noteInput = TextEditingController();
 
   @override
   void onInit() {
@@ -31,7 +33,21 @@ class IncomeController extends GetxController {
   @override
   void onClose() {
     amountInput.dispose();
+    noteInput.dispose();
     super.onClose();
+  }
+
+  void pickDate(BuildContext context) async {
+    final initialDate = selectedDate.value ?? DateTime.now();
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      selectedDate.value = picked;
+    }
   }
 
   int get amountValue {
@@ -40,9 +56,28 @@ class IncomeController extends GetxController {
     return int.parse(text);
   }
 
-  void submitIncome() {
-    final amount = amountValue;
-    debugPrint('Submitted income: $amount');
+  void submitIncome() async {
+    try {
+      final amount = amountValue;
+      final response = await repository.submitIncome(
+        selectedWalletId.value!,
+        selectedCategoryId.value!,
+        amount,
+        noteInput.text,
+        selectedDate.value!,
+      );
+      if (response.statusCode == 201) {
+        Get.snackbar('Sukses', 'Pemasukan berhasil ditambahkan');
+        // Reset form
+        selectedWalletId.value = null;
+        selectedCategoryId.value = null;
+        amountInput.text = 'Rp 0';
+        noteInput.clear();
+        selectedDate.value = DateTime.now();
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Gagal menambahkan pemasukan');
+    }
   }
 
   void fetchCategories() async {

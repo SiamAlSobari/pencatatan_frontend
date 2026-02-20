@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/app/modules/income/widgets/income_category_selector.dart';
+import 'package:mobile/app/modules/income/widgets/income_date_selector.dart';
+import 'package:mobile/app/modules/income/widgets/income_note_input.dart';
 import 'package:mobile/app/modules/income/widgets/income_transaction_nominal.dart';
 import 'package:mobile/app/modules/income/widgets/income_wallet_selector.dart';
 
@@ -44,6 +46,10 @@ class IncomeView extends GetView<IncomeController> {
               IncomeCategorySelector(),
               const SizedBox(height: 30),
               IncomeWalletSelector(),
+              const SizedBox(height: 30),
+              IncomeDateSelector(),
+              const SizedBox(height: 30),
+              IncomeNoteInput()
             ],
           ),
         ),
