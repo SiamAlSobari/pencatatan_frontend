@@ -17,6 +17,7 @@ class IncomeController extends GetxController {
   final RxList<WalletModel> wallets = RxList<WalletModel>();
   final Rxn<DateTime> selectedDate = Rxn<DateTime>(DateTime.now());
   final TextEditingController noteInput = TextEditingController();
+  final RxBool isSubmitting = false.obs;
 
   @override
   void onInit() {
@@ -58,6 +59,7 @@ class IncomeController extends GetxController {
 
   void submitIncome() async {
     try {
+      isSubmitting.value = true;
       final amount = amountValue;
       final response = await repository.submitIncome(
         selectedWalletId.value!,
@@ -73,10 +75,12 @@ class IncomeController extends GetxController {
         selectedCategoryId.value = null;
         amountInput.text = 'Rp 0';
         noteInput.clear();
-        selectedDate.value = DateTime.now();
+        selectedDate.value;
       }
     } catch (e) {
       Get.snackbar('Error', 'Gagal menambahkan pemasukan');
+    } finally {
+      isSubmitting.value = false;
     }
   }
 
