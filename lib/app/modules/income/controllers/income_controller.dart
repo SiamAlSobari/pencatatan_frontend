@@ -18,6 +18,7 @@ class IncomeController extends GetxController {
   final Rxn<DateTime> selectedDate = Rxn<DateTime>(DateTime.now());
   final TextEditingController noteInput = TextEditingController();
   final RxBool isSubmitting = false.obs;
+  final keyForm = GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -58,6 +59,12 @@ class IncomeController extends GetxController {
   }
 
   void submitIncome() async {
+    if (!keyForm.currentState!.validate()) {
+      return;
+    }
+    debugPrint('Submitting income with:');
+    debugPrint('Wallet ID: ${selectedWalletId.value}');
+    debugPrint('Category ID: ${selectedCategoryId.value}');
     try {
       isSubmitting.value = true;
       final amount = amountValue;
@@ -71,8 +78,8 @@ class IncomeController extends GetxController {
       if (response.statusCode == 201) {
         Get.snackbar('Sukses', 'Pemasukan berhasil ditambahkan');
         // Reset form
-        selectedWalletId.value = null;
-        selectedCategoryId.value = null;
+        selectedWalletId.value;
+        selectedCategoryId.value;
         amountInput.text = 'Rp 0';
         noteInput.clear();
         selectedDate.value;

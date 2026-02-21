@@ -51,6 +51,20 @@ class IncomeWalletSelector extends StatelessWidget {
                   width: 1.2,
                 ),
               ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide(
+                  color: Colors.red.withAlpha(120),
+                  width: 1.2,
+                ),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide(
+                  color: Colors.red.withAlpha(120),
+                  width: 1.2,
+                ),
+              ),
             ),
             icon: Padding(
               padding: const EdgeInsets.only(right: 8),
@@ -91,6 +105,12 @@ class IncomeWalletSelector extends StatelessWidget {
             ).toList(),
             onChanged: (value) {
               controller.selectedWalletId.value = value;
+            },
+            validator: (value) {
+              if (value == null) {
+                return 'Pilih dompet terlebih dahulu';
+              }
+              return null;
             },
           ),
         )

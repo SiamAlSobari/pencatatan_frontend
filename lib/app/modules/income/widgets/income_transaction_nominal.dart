@@ -23,7 +23,7 @@ class IncomeTransactionNominal extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          TextField(
+          TextFormField(
             controller: controller.amountInput,
             decoration: InputDecoration(
               enabledBorder: UnderlineInputBorder(
@@ -47,6 +47,16 @@ class IncomeTransactionNominal extends StatelessWidget {
               color: Colors.green,
               fontWeight: FontWeight.bold,
             ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Nominal tidak boleh kosong';
+              }
+              final numericValue = controller.amountValue;
+              if (numericValue <= 0) {
+                return 'Nominal harus lebih besar dari 0';
+              }
+              return null;
+            },
           )
         ],
       ),

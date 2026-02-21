@@ -30,7 +30,8 @@ class IncomeNoteInput extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        TextField(
+        TextFormField(
+          controller: controller.noteInput,
           decoration: InputDecoration(
             hintText: "Masukkan catatan (opsional)",
             enabledBorder: OutlineInputBorder(
@@ -38,6 +39,13 @@ class IncomeNoteInput extends StatelessWidget {
               borderSide: BorderSide(
                 color: Colors.grey.withAlpha(80),
                 width: 1,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(
+                color: Colors.red.withAlpha(120),
+                width: 1.2,
               ),
             ),
             focusedBorder: OutlineInputBorder(
@@ -49,7 +57,13 @@ class IncomeNoteInput extends StatelessWidget {
             ),
           ),
           maxLines: 3,
-        )
+          validator: (value) {
+            if (value != null && value.length > 200) {
+              return 'Catatan tidak boleh lebih dari 200 karakter';
+            }
+            return null;
+          },
+        ),
       ],
     );
   }

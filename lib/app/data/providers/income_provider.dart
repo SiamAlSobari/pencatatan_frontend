@@ -10,10 +10,10 @@ class IncomeProvider extends BaseProvider {
     return await get('/categories');
   }
 
-  Future<Response> submitIncome(String walletId, String categoryId,
-      int amount, String note, DateTime date) async {
+  Future<Response> submitIncome(String walletId, String categoryId, int amount,
+      String note, DateTime date) async {
     return await post(
-      '/incomes',
+      '/transactions',
       {
         'wallet_id': walletId,
         'category_id': categoryId,

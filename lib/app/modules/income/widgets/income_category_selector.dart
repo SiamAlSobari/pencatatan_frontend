@@ -36,7 +36,6 @@ class IncomeCategorySelector extends StatelessWidget {
         Obx(
           () {
             final selectedId = controller.selectedCategoryId.value;
-
             return GridView.builder(
               itemCount: controller.categories.length,
               shrinkWrap: true, // penting untuk GridView dalam Column
@@ -99,6 +98,19 @@ class IncomeCategorySelector extends StatelessWidget {
               },
             );
           },
+        ),
+        const SizedBox(height: 10),
+        Obx(
+          () => controller.categories.isEmpty
+              ? Text(
+                  'Tidak ada kategori tersedia',
+                  style: GoogleFonts.manrope(
+                    fontSize: 14,
+                    color: Colors.grey,
+                    fontStyle: FontStyle.italic,
+                  ),
+                )
+              : const SizedBox.shrink(),
         )
       ],
     );

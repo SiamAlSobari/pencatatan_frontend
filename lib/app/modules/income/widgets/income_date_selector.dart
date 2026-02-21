@@ -31,7 +31,7 @@ class IncomeDateSelector extends StatelessWidget {
           height: 15,
         ),
         Obx(
-          () => TextField(
+          () => TextFormField(
             onTap: () => controller.pickDate(Get.context!),
             readOnly: true,
             decoration: InputDecoration(
@@ -56,6 +56,9 @@ class IncomeDateSelector extends StatelessWidget {
                   ? '${controller.selectedDate.value!.day}/${controller.selectedDate.value!.month}/${controller.selectedDate.value!.year}'
                   : '',
             ),
+            validator: (value) => controller.selectedDate.value == null
+                ? 'Tanggal harus dipilih'
+                : null,
           ),
         )
       ],
