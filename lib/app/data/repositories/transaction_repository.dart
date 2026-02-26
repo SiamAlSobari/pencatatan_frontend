@@ -8,4 +8,10 @@ class TransactionRepository {
   Future<Response> fetchRecentTransactions() async {
     return await _transactionProvider.fetchRecentTransactions();
   }
+
+  Future<Response> createTransaction(String walletId, String categoryId, int amount,
+      String note, DateTime date) async {
+    return await _transactionProvider.createTransaction(
+        walletId, categoryId, amount, note, date);
+  }
 }

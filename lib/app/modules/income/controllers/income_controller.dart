@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 import 'package:mobile/app/data/models/category_model.dart';
 import 'package:mobile/app/data/models/wallet_model.dart';
 import 'package:mobile/app/data/repositories/category_repositoy.dart';
-import 'package:mobile/app/data/repositories/income_repository.dart';
+import 'package:mobile/app/data/repositories/transaction_repository.dart';
 import 'package:mobile/app/data/repositories/wallet_repository.dart';
 
 class IncomeController extends GetxController {
-  final IncomeRepository _incomeRepository;
+  final TransactionRepository _transactionRepository;
   final WalletRepository _walletRepository;
   final CategoryRepositoy _categoryRepositoy;
 
-  IncomeController(this._incomeRepository, this._walletRepository, this._categoryRepositoy);
+  IncomeController(this._transactionRepository, this._walletRepository, this._categoryRepositoy);
   final TextEditingController amountInput = TextEditingController(
     text: 'Rp 0',
   );
@@ -72,7 +72,7 @@ class IncomeController extends GetxController {
     try {
       isSubmitting.value = true;
       final amount = amountValue;
-      final response = await _incomeRepository.createIncome(
+      final response = await _transactionRepository.createTransaction(
         selectedWalletId.value!,
         selectedCategoryId.value!,
         amount,

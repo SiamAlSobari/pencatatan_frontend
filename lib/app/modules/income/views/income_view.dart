@@ -52,7 +52,8 @@ class IncomeView extends GetView<IncomeController> {
                 const SizedBox(height: 30),
                 IncomeNoteInput(),
                 const SizedBox(height: 30),
-                IncomeSubmitForm()
+                IncomeSubmitForm(),
+                const SizedBox(height: 30),
               ],
             ),
           ),
