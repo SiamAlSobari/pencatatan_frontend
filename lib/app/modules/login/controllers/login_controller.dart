@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:mobile/app/core/services/session_service.dart';
 import 'package:mobile/app/core/storages/token_storage.dart';
 import 'package:mobile/app/data/models/session_model.dart';
-import 'package:mobile/app/data/repositories/login_repository.dart';
+import 'package:mobile/app/data/repositories/auth_repository.dart';
 import 'package:mobile/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
-  final LoginRepository repository;
+  final AuthRepository _authRepository;
 
-  LoginController(this.repository);
+  LoginController(this._authRepository);
 
   final session = Get.find<SessionService>();
   final formKey = GlobalKey<FormState>();
@@ -42,7 +42,7 @@ class LoginController extends GetxController {
     }
     try {
       isLoading.value = true;
-      final response = await repository.login(email.text, password.text);
+      final response = await _authRepository.login(email.text, password.text);
       final token = response.body['data']['token'].toString();
       await TokenStorage().saveToken(token);
       final userSession = SessionModel(

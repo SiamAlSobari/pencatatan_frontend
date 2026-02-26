@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
-import 'package:mobile/app/data/providers/register_provider.dart';
-import 'package:mobile/app/data/repositories/register_repository.dart';
+import 'package:mobile/app/data/providers/auth_provider.dart';
+import 'package:mobile/app/data/repositories/auth_repository.dart';
 
 import '../controllers/register_controller.dart';
 
 class RegisterBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<RegisterProvider>(
-      () => RegisterProvider(),
+    Get.lazyPut<AuthProvider>(
+      () => AuthProvider(),
     );
-    Get.lazyPut<RegisterRepository>(
-      () => RegisterRepository(Get.find()),
+    Get.lazyPut<AuthRepository>(
+      () => AuthRepository(Get.find()),
     );
     Get.lazyPut<RegisterController>(
       () => RegisterController(Get.find()),

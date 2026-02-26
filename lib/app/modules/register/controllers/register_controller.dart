@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile/app/data/repositories/register_repository.dart';
+import 'package:mobile/app/data/repositories/auth_repository.dart';
 
 class RegisterController extends GetxController {
-  final RegisterRepository repository;
-  RegisterController(this.repository);
+  final AuthRepository _authRepository;
+  RegisterController(this._authRepository);
 
   final formKey = GlobalKey<FormState>();
   var isPasswordVisible = false.obs;
@@ -41,7 +41,7 @@ class RegisterController extends GetxController {
     }
     try {
       isLoading.value = true;
-      await repository.register(name.text, email.text, password.text);
+      await _authRepository.register(name.text, email.text, password.text);
       Get.snackbar(
         'Register Berhasil',
         'Anda berhasil mendaftar, silakan login.',

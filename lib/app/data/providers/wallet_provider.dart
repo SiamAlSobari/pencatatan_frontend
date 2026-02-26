@@ -1,16 +1,12 @@
 import 'package:get/get.dart';
 import 'package:mobile/app/data/providers/base_provider.dart';
 
-class HomeProvider extends BaseProvider {
+class WalletProvider extends BaseProvider {
   Future<Response> fetchWalletSummary() async {
     return await get('/wallets/summary');
   }
 
   Future<Response> fetchWallets() async {
     return await get('/wallets');
-  }
-
-  Future<Response> fetchTransactions() async {
-    return await get('/transactions/recent');
   }
 }

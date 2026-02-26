@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile/app/data/models/category_model.dart';
 import 'package:mobile/app/data/models/wallet_model.dart';
+import 'package:mobile/app/data/repositories/category_repositoy.dart';
 import 'package:mobile/app/data/repositories/income_repository.dart';
+import 'package:mobile/app/data/repositories/wallet_repository.dart';
 
 class IncomeController extends GetxController {
-  final IncomeRepository repository;
+  final IncomeRepository _incomeRepository;
+  final WalletRepository _walletRepository;
+  final CategoryRepositoy _categoryRepositoy;
 
-  IncomeController(this.repository);
+  IncomeController(this._incomeRepository, this._walletRepository, this._categoryRepositoy);
   final TextEditingController amountInput = TextEditingController(
     text: 'Rp 0',
   );
@@ -68,7 +72,7 @@ class IncomeController extends GetxController {
     try {
       isSubmitting.value = true;
       final amount = amountValue;
-      final response = await repository.submitIncome(
+      final response = await _incomeRepository.createIncome(
         selectedWalletId.value!,
         selectedCategoryId.value!,
         amount,
@@ -78,11 +82,11 @@ class IncomeController extends GetxController {
       if (response.statusCode == 201) {
         Get.snackbar('Sukses', 'Pemasukan berhasil ditambahkan');
         // Reset form
-        selectedWalletId.value;
-        selectedCategoryId.value;
+        selectedWalletId.value = null;
+        selectedCategoryId.value = null;
         amountInput.text = 'Rp 0';
         noteInput.clear();
-        selectedDate.value;
+        selectedDate.value = DateTime.now();
       }
     } catch (e) {
       Get.snackbar('Error', 'Gagal menambahkan pemasukan');
@@ -93,7 +97,7 @@ class IncomeController extends GetxController {
 
   void fetchCategories() async {
     try {
-      final response = await repository.fetchCategories();
+      final response = await _categoryRepositoy.fetchCategories();
       if (response.statusCode == 200) {
         final data = response.body['data'] as List;
         categories.value =
@@ -106,7 +110,7 @@ class IncomeController extends GetxController {
 
   void fetchWallets() async {
     try {
-      final response = await repository.fetchWallets();
+      final response = await _walletRepository.fetchWallets();
       if (response.statusCode == 200) {
         final data = response.body['data'] as List;
         wallets.value = data.map((json) => WalletModel.fromJson(json)).toList();
