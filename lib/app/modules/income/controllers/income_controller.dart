@@ -87,6 +87,7 @@ class IncomeController extends GetxController {
         amountInput.text = 'Rp 0';
         noteInput.clear();
         selectedDate.value = DateTime.now();
+        Get.back(); // Close the form after submission
       }
     } catch (e) {
       Get.snackbar('Error', 'Gagal menambahkan pemasukan');

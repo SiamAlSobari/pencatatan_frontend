@@ -18,6 +18,20 @@ Color mapCategoryColor(String category) {
       return const Color(0xFF7986CB); // Indigo
     case 'shopping':
       return const Color(0xFFFFD54F); // Yellow
+    case 'investment':
+      return const Color(0xFF9575CD); // Deep Purple
+    case 'freelance':
+      return const Color(0xFF4FC3F7); // Light Blue
+    case 'other':
+      return const Color(0xFF90A4AE); // Grey
+    case 'gift':
+      return const Color(0xFFFF8A65); // Deep Orange
+    case 'loan':
+      return const Color(0xFFE57373); // Red
+    case 'tax':
+      return const Color(0xFF4DB6AC); // Teal
+    case 'bill':
+      return const Color(0xFF81C784); // Green
     default:
       return const Color(0xFF90A4AE); // Grey for unknown categories
   }

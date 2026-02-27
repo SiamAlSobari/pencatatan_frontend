@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile/app/modules/expense/widgets/expense_transaction_nominal.dart';
+import 'package:mobile/app/modules/expense/widgets/expense_wallet_selector.dart';
 
 import '../controllers/expense_controller.dart';
 
@@ -22,10 +24,18 @@ class ExpenseView extends GetView<ExpenseController> {
         ),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'ExpenseView is working',
-          style: TextStyle(fontSize: 20),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              ExpenseTransactionNominal(),
+              const SizedBox(height: 30),
+              ExpenseWalletSelector()
+            ],
+          ),
         ),
       ),
     );
