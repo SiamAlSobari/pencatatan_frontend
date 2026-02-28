@@ -22,7 +22,14 @@ class IncomeView extends GetView<IncomeController> {
         elevation: 0, // hilangkan bayangan
         scrolledUnderElevation: 0,
         surfaceTintColor: Colors.transparent, // TAMBAHKAN INI
-
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1),
+          child: Divider(
+            height: 1,
+            thickness: 1,
+            color: Colors.grey.withAlpha(30),
+          ),
+        ),
         shadowColor: Colors.transparent, // jaga-jaga
         title: Text(
           "Tambah Pemasukan",

@@ -98,7 +98,7 @@ class IncomeController extends GetxController {
 
   void fetchCategories() async {
     try {
-      final response = await _categoryRepositoy.fetchCategories();
+      final response = await _categoryRepositoy.fetchIncomeCategories();
       if (response.statusCode == 200) {
         final data = response.body['data'] as List;
         categories.value =

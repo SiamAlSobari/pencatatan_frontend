@@ -7,7 +7,11 @@ class CategoryRepositoy {
   CategoryRepositoy(this._categoryProvider);
 
 
-  Future<Response> fetchCategories() async {
-    return await _categoryProvider.getCategories();
+  Future<Response> fetchIncomeCategories() async {
+    return await _categoryProvider.getIncomeCategories();
+  }
+
+  Future<Response> fetchExpenseCategories() async {
+    return await _categoryProvider.getExpenseCategories();
   }
 }

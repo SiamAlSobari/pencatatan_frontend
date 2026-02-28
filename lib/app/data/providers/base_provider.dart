@@ -5,7 +5,7 @@ import 'package:mobile/app/routes/app_pages.dart';
 class BaseProvider extends GetConnect {
   @override
   void onInit() {
-    httpClient.baseUrl = 'http://10.0.2.2:3000';
+    httpClient.baseUrl = 'http://localhost:3000';
 
     httpClient.addRequestModifier<dynamic>(
       (request) async {

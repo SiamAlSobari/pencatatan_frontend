@@ -24,22 +24,22 @@ class ExpenseTransactionNominal extends StatelessWidget {
           const SizedBox(height: 8),
           TextFormField(
             controller: controller.amountInput,
-            decoration: const InputDecoration(
+            decoration:  InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.grey,
+                  color: Colors.grey.withAlpha(80),
                   width: 1,
                 ),
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.red,
+                  color: Colors.red.withAlpha(120),
                   width: 1.2,
                 ),
               ),
               errorBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.red,
+                  color: Colors.red.withAlpha(120),
                   width: 1.2,
                 ),
               ),

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class AuthProvider extends GetConnect {
   @override
   void onInit() {
-    httpClient.baseUrl = 'http://10.0.2.2:3000';
+    httpClient.baseUrl = 'http://localhost:3000';
     super.onInit();
   }
 

@@ -140,19 +140,21 @@ class HomeBalanceCard extends StatelessWidget {
                       const SizedBox(width: 8),
                       InkWell(
                         onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white.withAlpha(30),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
-                          child: Text(
-                            'Detail Analisis',
-                            style: GoogleFonts.manrope(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                        child: Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withAlpha(30),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 6),
+                            child: Text(
+                              'Detail Analisis',
+                              style: GoogleFonts.manrope(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
