@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/app/modules/expense/widgets/expense_category_selector.dart';
 import 'package:mobile/app/modules/expense/widgets/expense_date_selector.dart';
 import 'package:mobile/app/modules/expense/widgets/expense_note_input.dart';
+import 'package:mobile/app/modules/expense/widgets/expense_submit_form.dart';
 import 'package:mobile/app/modules/expense/widgets/expense_transaction_nominal.dart';
 import 'package:mobile/app/modules/expense/widgets/expense_wallet_selector.dart';
 
@@ -23,7 +24,7 @@ class ExpenseView extends GetView<ExpenseController> {
         surfaceTintColor: Colors.transparent, // TAMBAHKAN INI
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(1),
-          child:Divider(
+          child: Divider(
             height: 1,
             thickness: 1,
             color: Colors.grey.withAlpha(30),
@@ -42,21 +43,26 @@ class ExpenseView extends GetView<ExpenseController> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20),
-              ExpenseTransactionNominal(),
-              const SizedBox(height: 30),
-              ExpenseCategorySelector(),
-              const SizedBox(height: 30),
-              ExpenseWalletSelector(),
-              const SizedBox(height: 30),
-              ExpenseDateSelector(),
-              const SizedBox(height: 30),
-              ExpenseNoteInput(),
-              const SizedBox(height: 40),
-            ],
+          child: Form(
+            key: controller.keyForm,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                ExpenseTransactionNominal(),
+                const SizedBox(height: 30),
+                ExpenseCategorySelector(),
+                const SizedBox(height: 30),
+                ExpenseWalletSelector(),
+                const SizedBox(height: 30),
+                ExpenseDateSelector(),
+                const SizedBox(height: 30),
+                ExpenseNoteInput(),
+                const SizedBox(height: 30),
+                ExpenseSubmitForm(),
+                const SizedBox(height: 30),
+              ],
+            ),
           ),
         ),
       ),

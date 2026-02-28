@@ -5,13 +5,15 @@ import 'package:mobile/app/data/models/wallet_model.dart';
 import 'package:mobile/app/data/repositories/category_repositoy.dart';
 import 'package:mobile/app/data/repositories/transaction_repository.dart';
 import 'package:mobile/app/data/repositories/wallet_repository.dart';
+import 'package:mobile/app/modules/home/controllers/home_controller.dart';
 
 class IncomeController extends GetxController {
   final TransactionRepository _transactionRepository;
   final WalletRepository _walletRepository;
   final CategoryRepositoy _categoryRepositoy;
 
-  IncomeController(this._transactionRepository, this._walletRepository, this._categoryRepositoy);
+  IncomeController(this._transactionRepository, this._walletRepository,
+      this._categoryRepositoy);
   final TextEditingController amountInput = TextEditingController(
     text: 'Rp 0',
   );
@@ -66,9 +68,21 @@ class IncomeController extends GetxController {
     if (!keyForm.currentState!.validate()) {
       return;
     }
-    debugPrint('Submitting income with:');
-    debugPrint('Wallet ID: ${selectedWalletId.value}');
-    debugPrint('Category ID: ${selectedCategoryId.value}');
+
+    if (selectedWalletId.value == null) {
+      Get.snackbar('Error', 'Pilih wallet dulu');
+      return;
+    }
+
+    if (selectedCategoryId.value == null) {
+      Get.snackbar('Error', 'Pilih kategori dulu');
+      return;
+    }
+
+    if (selectedDate.value == null) {
+      Get.snackbar('Error', 'Tanggal belum dipilih');
+      return;
+    }
     try {
       isSubmitting.value = true;
       final amount = amountValue;
@@ -79,17 +93,23 @@ class IncomeController extends GetxController {
         noteInput.text,
         selectedDate.value!,
       );
+      debugPrint('Response status: ${response.statusCode}');
+      debugPrint('Response body: ${response.body}');
       if (response.statusCode == 201) {
-        Get.snackbar('Sukses', 'Pemasukan berhasil ditambahkan');
-        // Reset form
-        selectedWalletId.value = null;
-        selectedCategoryId.value = null;
-        amountInput.text = 'Rp 0';
-        noteInput.clear();
-        selectedDate.value = DateTime.now();
-        Get.back(); // Close the form after submission
+        if (Get.isRegistered<HomeController>()) {
+          Get.find<HomeController>().fetchTransactions();
+          Get.find<HomeController>().fetchWalletSummary();
+        }
+        Get.back();
+        Get.snackbar(
+          'Sukses',
+          'Pemasukan berhasil ditambahkan',
+          snackPosition: SnackPosition.TOP,
+        );
       }
-    } catch (e) {
+    } catch (e, s) {
+      debugPrint('ERROR: $e');
+      debugPrint('STACKTRACE: $s');
       Get.snackbar('Error', 'Gagal menambahkan pemasukan');
     } finally {
       isSubmitting.value = false;

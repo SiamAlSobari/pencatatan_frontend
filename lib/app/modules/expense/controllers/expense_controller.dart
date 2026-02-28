@@ -4,12 +4,16 @@ import 'package:get/get.dart';
 import 'package:mobile/app/data/models/category_model.dart';
 import 'package:mobile/app/data/models/wallet_model.dart';
 import 'package:mobile/app/data/repositories/category_repositoy.dart';
+import 'package:mobile/app/data/repositories/transaction_repository.dart';
 import 'package:mobile/app/data/repositories/wallet_repository.dart';
+import 'package:mobile/app/modules/home/controllers/home_controller.dart';
 
 class ExpenseController extends GetxController {
   final WalletRepository _walletRepository;
+  final TransactionRepository _transactionRepository;
   final CategoryRepositoy _categoryRepositoy;
-  ExpenseController(this._walletRepository, this._categoryRepositoy);
+  ExpenseController(this._walletRepository, this._transactionRepository,
+      this._categoryRepositoy);
 
   final RxList<CategoryModel> categories = RxList<CategoryModel>();
   final RxList<WalletModel> wallets = RxList<WalletModel>();
@@ -20,7 +24,6 @@ class ExpenseController extends GetxController {
   final RxBool isSubmitting = false.obs;
   final keyForm = GlobalKey<FormState>();
   final TextEditingController amountInput = TextEditingController(text: 'Rp 0');
-
 
   @override
   void onInit() {
@@ -65,7 +68,8 @@ class ExpenseController extends GetxController {
       final response = await _categoryRepositoy.fetchExpenseCategories();
       if (response.statusCode == 200) {
         final data = response.body['data'] as List;
-        categories.value = data.map((json) => CategoryModel.fromJson(json)).toList();
+        categories.value =
+            data.map((json) => CategoryModel.fromJson(json)).toList();
       }
     } catch (e) {
       categories.clear();
@@ -84,9 +88,45 @@ class ExpenseController extends GetxController {
     }
   }
 
-  void submitExpense() {
-    // Implementasi logika untuk menyimpan data pengeluaran
-    // Misalnya, panggil API untuk menyimpan data ke backend
-    // Setelah berhasil, reset form atau navigasi kembali ke halaman sebelumnya
+  void submitExpense() async {
+    if (!keyForm.currentState!.validate()) {
+      return;
+    }
+    if (selectedWalletId.value == null) {
+      Get.snackbar('Error', 'Silakan pilih dompet');
+      return;
+    }
+    if (selectedCategoryId.value == null) {
+      Get.snackbar('Error', 'Silakan pilih kategori');
+      return;
+    }
+    if (selectedDate.value == null) {
+      Get.snackbar('Error', 'Silakan pilih tanggal');
+      return;
+    }
+    // Lanjutkan dengan logika submit pengeluaran
+    try {
+      final response = await _transactionRepository.createTransaction(
+        selectedWalletId.value!,
+        selectedCategoryId.value!,
+        -amountValue,
+        noteInput.text,
+        selectedDate.value!,
+      );
+      debugPrint('Response status: ${response.statusCode}');
+      debugPrint('Response body: ${response.body}');
+
+      if (response.statusCode == 201) {
+        if (Get.isRegistered<HomeController>()) {
+          Get.find<HomeController>().fetchTransactions();
+          Get.find<HomeController>().fetchWalletSummary();
+        }
+        Get.back();
+        Get.snackbar('Sukses', 'Pengeluaran berhasil ditambahkan');
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      Get.snackbar('Error', 'Gagal menambahkan pengeluaran');
+    }
   }
 }
