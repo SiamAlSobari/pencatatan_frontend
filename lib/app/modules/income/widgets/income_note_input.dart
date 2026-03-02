@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/app/modules/income/controllers/income_controller.dart';
 
 class IncomeNoteInput extends StatelessWidget {
-  IncomeNoteInput({super.key});
   final controller = Get.find<IncomeController>();
+  IncomeNoteInput({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(

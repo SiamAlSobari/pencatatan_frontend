@@ -12,8 +12,7 @@ class IncomeController extends GetxController {
   final WalletRepository _walletRepository;
   final CategoryRepositoy _categoryRepositoy;
 
-  IncomeController(this._transactionRepository, this._walletRepository,
-      this._categoryRepositoy);
+  IncomeController(this._transactionRepository, this._walletRepository, this._categoryRepositoy);
   final TextEditingController amountInput = TextEditingController(
     text: 'Rp 0',
   );
@@ -121,8 +120,7 @@ class IncomeController extends GetxController {
       final response = await _categoryRepositoy.fetchIncomeCategories();
       if (response.statusCode == 200) {
         final data = response.body['data'] as List;
-        categories.value =
-            data.map((json) => CategoryModel.fromJson(json)).toList();
+        categories.value = data.map((json) => CategoryModel.fromJson(json)).toList();
       }
     } catch (e) {
       categories.clear();
