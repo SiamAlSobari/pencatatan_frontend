@@ -18,15 +18,21 @@ class MainBottomNav extends GetView<MainController> {
           backgroundColor: Colors.white,
           selectedItemColor: AppColor.primary,
           unselectedItemColor: Colors.grey,
-          selectedLabelStyle:
-              GoogleFonts.manrope(fontSize: 14, fontWeight: FontWeight.normal),
-          unselectedLabelStyle:
-              GoogleFonts.manrope(fontSize: 14, fontWeight: FontWeight.normal),
+          selectedLabelStyle: GoogleFonts.manrope(fontSize: 14, fontWeight: FontWeight.normal),
+          unselectedLabelStyle: GoogleFonts.manrope(fontSize: 14, fontWeight: FontWeight.normal),
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home, size: 30), label: 'Home'),
+              icon: Icon(Icons.home, size: 30),
+              label: 'Home',
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person, size: 30), label: 'Profile'),
+              icon: Icon(Icons.wallet, size: 30),
+              label: 'Wallet',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person, size: 30),
+              label: 'Profile',
+            ),
           ],
         ),
       ),
