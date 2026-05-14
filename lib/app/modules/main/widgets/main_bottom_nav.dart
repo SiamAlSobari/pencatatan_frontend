@@ -13,6 +13,7 @@ class MainBottomNav extends GetView<MainController> {
       () => Theme(
         data: ThemeData(splashFactory: NoSplash.splashFactory),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: controller.indexPage.value,
           onTap: (i) => controller.changePage(i),
           backgroundColor: Colors.white,
@@ -28,6 +29,10 @@ class MainBottomNav extends GetView<MainController> {
             BottomNavigationBarItem(
               icon: Icon(Icons.wallet, size: 30),
               label: 'Wallet',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.pie_chart, size: 30),
+              label: 'Analytics',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person, size: 30),
