@@ -9,6 +9,9 @@ abstract class Routes {
   static const SPLASH = _Paths.SPLASH;
   static const INCOME = _Paths.INCOME;
   static const EXPENSE = _Paths.EXPENSE;
+  static const GOAL = _Paths.GOAL;
+  static const BUDGET = _Paths.BUDGET;
+  static const RECURRING = _Paths.RECURRING;
 }
 
 abstract class _Paths {
@@ -19,4 +22,7 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const INCOME = '/income';
   static const EXPENSE = '/expense';
+  static const GOAL = '/goal';
+  static const BUDGET = '/budget';
+  static const RECURRING = '/recurring';
 }

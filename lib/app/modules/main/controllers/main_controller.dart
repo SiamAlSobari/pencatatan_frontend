@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:mobile/app/modules/home/views/home_view.dart';
 import 'package:mobile/app/modules/profile/views/profile_view.dart';
 import 'package:mobile/app/modules/wallet/views/wallet_view.dart';
+import 'package:mobile/app/modules/analytics/views/analytics_view.dart';
 
 class MainController extends GetxController {
   //TODO: Implement MainController
@@ -10,6 +11,7 @@ class MainController extends GetxController {
   final pages = [
     HomeView(),
     WalletView(),
+    AnalyticsView(),
     ProfileView()
   ];
 
